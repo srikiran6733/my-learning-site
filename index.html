@@ -1,180 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CodeMaster 🚀 | Automation & Coding Practice</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodeMaster 🚀 | Automation & Coding Practice</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+  body { background-color: #1d2a35; color: white; }
 
-    body {
-      background-color: #1d2a35;
-      color: white;
-    }
+  /* Top Header: logo + signin/signup */
+  .top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #1d2a35;
+    border-bottom: 2px solid #04AA6D;
+  }
+  .top-header .logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #04AA6D;
+  }
+  .top-header .auth-buttons a {
+    margin-left: 10px;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: #04AA6D;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  .top-header .auth-buttons a:hover { background-color: #028a5e; }
 
-    /* Navbar Container */
-    .navbar-wrapper {
-      position: relative;
-      background-color: #1d2a35;
-      padding: 10px 0;
-    }
+  /* Navbar */
+  .navbar-wrapper {
+    position: relative;
+    background-color: #1d2a35;
+  }
+  .navbar {
+    display: flex;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    padding: 10px 0;
+    gap: 10px;
+  }
+  .navbar a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 5px;
+    background-color: #04AA6D;
+    white-space: nowrap;
+    transition: 0.3s;
+    flex-shrink: 0;
+  }
+  .navbar a:hover { background-color: #028a5e; }
 
-    .navbar {
-      display: flex;
-      overflow-x: hidden; /* hide scrollbar */
-      scroll-behavior: smooth;
-      gap: 10px;
-      padding-left: 20px;
-    }
+  /* Scroll Buttons */
+  .scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.3);
+    border: none;
+    color: white;
+    font-size: 20px;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1;
+  }
+  .scroll-left { left: 0; }
+  .scroll-right { right: 0; }
 
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-      color: #04AA6D;
-      flex-shrink: 0;
-      margin-right: 20px;
-    }
+  /* Hero Section */
+  .hero {
+    text-align: center;
+    padding: 80px 20px;
+  }
+  .hero h1 { font-size: 60px; margin-bottom: 20px; }
+  .hero p { font-size: 20px; color: #ffe082; margin-bottom: 30px; }
 
-    .nav-links a {
-      text-decoration: none;
-      color: white;
-      font-size: 14px;
-      font-weight: bold;
-      padding: 8px 15px;
-      border-radius: 5px;
-      background-color: #04AA6D;
-      flex-shrink: 0;
-      transition: 0.3s;
-      white-space: nowrap;
-    }
-
-    .nav-links a:hover {
-      background-color: #028a5e;
-    }
-
-    .signin-btn {
-      background-color: #04AA6D;
-      padding: 8px 15px;
-      border-radius: 5px;
-      text-decoration: none;
-      color: white;
-      flex-shrink: 0;
-      white-space: nowrap;
-    }
-
-    /* Scroll Buttons */
-    .scroll-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(0,0,0,0.3);
-      border: none;
-      color: white;
-      font-size: 20px;
-      padding: 8px 12px;
-      cursor: pointer;
-      border-radius: 5px;
-      z-index: 1;
-    }
-
-    .scroll-left {
-      left: 0;
-    }
-
-    .scroll-right {
-      right: 0;
-    }
-
-    /* Hero Section */
-    .hero {
-      text-align: center;
-      padding: 100px 20px;
-    }
-
-    .hero h1 {
-      font-size: 60px;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      font-size: 20px;
-      color: #ffe082;
-      margin-bottom: 30px;
-    }
-
-    .search-box {
-      display: flex;
-      justify-content: center;
-      max-width: 500px;
-      margin: auto;
-    }
-
-    .search-box input {
-      width: 80%;
-      padding: 15px;
-      border: none;
-      border-radius: 25px 0 0 25px;
-      outline: none;
-    }
-
-    .search-box button {
-      width: 20%;
-      border: none;
-      background-color: #04AA6D;
-      color: white;
-      border-radius: 0 25px 25px 0;
-      cursor: pointer;
-    }
-  </style>
+  .search-box {
+    display: flex;
+    justify-content: center;
+    max-width: 500px;
+    margin: auto;
+  }
+  .search-box input {
+    width: 80%;
+    padding: 15px;
+    border: none;
+    border-radius: 25px 0 0 25px;
+    outline: none;
+  }
+  .search-box button {
+    width: 20%;
+    border: none;
+    background-color: #04AA6D;
+    color: white;
+    border-radius: 0 25px 25px 0;
+    cursor: pointer;
+  }
+</style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <div class="navbar-wrapper">
-    <button class="scroll-btn scroll-left" onclick="scrollNavbar(-150)">&#171;</button>
-    <div class="navbar" id="navbar">
-      <div class="logo">CodeMaster 🚀</div>
-      <div class="nav-links">
-        <a href="snowflake.html">Snowflake</a>
-        <a href="html.html">HTML</a>
-        <a href="css.html">CSS</a>
-        <a href="javascript.html">JavaScript</a>
-        <a href="python.html">Python</a>
-        <a href="java.html">Java</a>
-        <a href="playwright.html">Playwright</a>
-        <a href="cypress.html">Cypress</a>
-        <a href="typescript.html">TypeScript</a>
-        <a href="selenium.html">Selenium</a>
-        <a href="sql.html">SQL</a>
-        <a href="quiz.html">Start Quiz</a>
-        <a href="#">Not Sure?</a>
-        <a href="#" class="signin-btn">Sign In</a>
-      </div>
-    </div>
-    <button class="scroll-btn scroll-right" onclick="scrollNavbar(150)">&#187;</button>
+<!-- Top Header -->
+<div class="top-header">
+  <div class="logo">CodeMaster 🚀</div>
+  <div class="auth-buttons">
+    <a href="#">Sign In</a>
+    <a href="#">Sign Up</a>
   </div>
+</div>
 
-  <!-- Hero Section -->
-  <div class="hero">
-    <h1>Learn to Code & Automate</h1>
-    <p>Practice quizzes for Snowflake, Selenium, Playwright, Cypress, Java, JavaScript, TypeScript, and SQL</p>
-    <div class="search-box">
-      <input type="text" placeholder="Search tutorials...">
-      <button>🔍</button>
-    </div>
+<!-- Navbar -->
+<div class="navbar-wrapper">
+  <button class="scroll-btn scroll-left" onclick="scrollNavbar(-150)">&#171;</button>
+  <div class="navbar" id="navbar">
+    <a href="snowflake.html">Snowflake</a>
+    <a href="html.html">HTML</a>
+    <a href="css.html">CSS</a>
+    <a href="javascript.html">JavaScript</a>
+    <a href="python.html">Python</a>
+    <a href="java.html">Java</a>
+    <a href="playwright.html">Playwright</a>
+    <a href="cypress.html">Cypress</a>
+    <a href="typescript.html">TypeScript</a>
+    <a href="selenium.html">Selenium</a>
+    <a href="sql.html">SQL</a>
+    <a href="quiz.html">Start Quiz</a>
+    <a href="#">Not Sure?</a>
   </div>
+  <button class="scroll-btn scroll-right" onclick="scrollNavbar(150)">&#187;</button>
+</div>
 
-  <script>
-    function scrollNavbar(distance) {
-      const navbar = document.getElementById('navbar');
-      navbar.scrollLeft += distance;
-    }
-  </script>
+<!-- Hero Section -->
+<div class="hero">
+  <h1>Learn to Code & Automate</h1>
+  <p>Practice quizzes for Snowflake, Selenium, Playwright, Cypress, Java, JavaScript, TypeScript, and SQL</p>
+  <div class="search-box">
+    <input type="text" placeholder="Search tutorials...">
+    <button>🔍</button>
+  </div>
+</div>
+
+<script>
+  function scrollNavbar(distance) {
+    const navbar = document.getElementById('navbar');
+    navbar.scrollLeft += distance;
+  }
+</script>
 
 </body>
 </html>

@@ -21,22 +21,8 @@
     "difficulty": "Beginner"
   },
   {
-    "question": "Where data is stored?",
-    "options": ["Warehouse", "Cloud Storage", "Schema", "Role"],
-    "answer": 1,
-    "category": "Snowflake",
-    "difficulty": "Beginner"
-  },
-  {
     "question": "What is Time Travel?",
-    "options": ["Backup feature", "Access historical data", "Delete data", "Move data"],
-    "answer": 1,
-    "category": "Snowflake",
-    "difficulty": "Intermediate"
-  },
-  {
-    "question": "Fail-safe period is?",
-    "options": ["1 day", "7 days", "14 days", "30 days"],
+    "options": ["Backup", "Access historical data", "Delete", "Move"],
     "answer": 1,
     "category": "Snowflake",
     "difficulty": "Intermediate"
@@ -47,26 +33,5 @@
     "answer": 1,
     "category": "Snowflake",
     "difficulty": "Beginner"
-  },
-  {
-    "question": "Internal stage is used for?",
-    "options": ["Storage inside Snowflake", "External cloud", "Compute", "Security"],
-    "answer": 0,
-    "category": "Snowflake",
-    "difficulty": "Intermediate"
-  },
-  {
-    "question": "Which object controls access?",
-    "options": ["Role", "Warehouse", "Stage", "Table"],
-    "answer": 0,
-    "category": "Snowflake",
-    "difficulty": "Beginner"
-  },
-  {
-    "question": "Cloning in Snowflake is?",
-    "options": ["Copy data physically", "Metadata copy", "Delete data", "Move data"],
-    "answer": 1,
-    "category": "Snowflake",
-    "difficulty": "Intermediate"
   }
 ]

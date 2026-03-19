@@ -3,130 +3,129 @@
 <head>
   <title>Snowflake Exam Platform</title>
   <style>
-    body { font-family: Arial; background:#1d2a35; color:white; margin:0; text-align:center; }
-    .navbar { display:flex; justify-content:space-between; padding:15px 40px; }
-    .container { margin-top:20px; }
-    .question { font-size:22px; margin:20px; }
-    .option { display:block; background:#2f3e46; margin:10px auto; padding:10px; width:300px; cursor:pointer; border-radius:5px; }
+    body { font-family: Arial; background:#1d2a35; color:white; text-align:center; }
+    .option { background:#2f3e46; margin:10px auto; padding:10px; width:300px; cursor:pointer; }
     .correct { background:green; }
     .wrong { background:red; }
-    .btn { margin:10px; padding:10px 20px; background:#04AA6D; border:none; color:white; cursor:pointer; }
-    .timer { font-size:18px; }
-    .answered { background:#04AA6D; }
+    .btn { padding:10px; margin:10px; background:#04AA6D; border:none; color:white; }
   </style>
 </head>
+
 <body>
 
-<div class="navbar">
-  <div>Snowflake Exam</div>
-  <div><a href="index.html" style="color:white;">Home</a></div>
+<h2>Snowflake Quiz</h2>
+
+<!-- FILTER UI -->
+<div>
+  Category:
+  <select id="category">
+    <option value="All">All</option>
+    <option value="Snowflake">Snowflake</option>
+  </select>
+
+  Difficulty:
+  <select id="difficulty">
+    <option value="All">All</option>
+    <option value="Beginner">Beginner</option>
+    <option value="Intermediate">Intermediate</option>
+  </select>
+
+  <button class="btn" onclick="startQuiz()">Start Quiz</button>
 </div>
 
-<div class="container">
-  <div class="timer">Total Time: <span id="globalTime">120</span>s</div>
-  <div id="qno"></div>
-  <div id="question" class="question"></div>
-  <div id="options"></div>
+<hr>
 
-  <button class="btn" onclick="prevQuestion()">Previous</button>
-  <button class="btn" onclick="nextQuestion()">Next</button>
-  <button class="btn" onclick="submitExam()">Submit</button>
+<div id="qno"></div>
+<div id="question"></div>
+<div id="options"></div>
 
-  <div id="result"></div>
-  <div id="review"></div>
+<button class="btn" onclick="prevQuestion()">Previous</button>
+<button class="btn" onclick="nextQuestion()">Next</button>
 
-  <div id="qnav"></div>
-</div>
+<div id="result"></div>
 
 <script>
+let allQuestions = [];
 let quiz = [];
+let answers = [];
+let current = 0;
 
+// Load JSON
 fetch("questions.json")
-  .then(response => response.json())
+  .then(res => res.json())
   .then(data => {
-    quiz = data;
-
-    let answers = [];
-
-    createNav();
-    loadQuestion();
+    allQuestions = data;
   });
 
-function startGlobalTimer(){
-  timer = setInterval(()=>{
-    globalTimer--;
-    document.getElementById("globalTime").innerText = globalTimer;
-    if(globalTimer === 0){ submitExam(); }
-  },1000);
+// Start Quiz
+function startQuiz() {
+  const cat = document.getElementById("category").value;
+  const diff = document.getElementById("difficulty").value;
+
+  quiz = allQuestions.filter(q => {
+    return (cat === "All" || q.category === cat) &&
+           (diff === "All" || q.difficulty === diff);
+  });
+
+  if (quiz.length === 0) {
+    alert("No questions found!");
+    return;
+  }
+
+  current = 0;
+  answers = new Array(quiz.length).fill(null);
+  loadQuestion();
 }
 
-function loadQuestion(){
-  document.getElementById("qno").innerText = "Question " + (current+1);
+// Load Question
+function loadQuestion() {
+  document.getElementById("qno").innerText = "Question " + (current + 1);
   document.getElementById("question").innerText = quiz[current].question;
 
-  const optionsDiv = document.getElementById("options");
-  optionsDiv.innerHTML="";
+  const optDiv = document.getElementById("options");
+  optDiv.innerHTML = "";
 
-  quiz[current].options.forEach((opt,i)=>{
-    const div=document.createElement("div");
+  quiz[current].options.forEach((opt, i) => {
+    const div = document.createElement("div");
     div.classList.add("option");
-    div.innerText=opt;
+    div.innerText = opt;
 
-    if(answers[current]!==null){
-      if(i===quiz[current].answer) div.classList.add("correct");
-      else if(i===answers[current]) div.classList.add("wrong");
+    if (answers[current] !== null) {
+      if (i === quiz[current].answer) div.classList.add("correct");
+      else if (i === answers[current]) div.classList.add("wrong");
     }
 
-    div.onclick=()=>{
-      answers[current]=i;
+    div.onclick = () => {
+      answers[current] = i;
       loadQuestion();
-      updateNav();
     };
 
-    optionsDiv.appendChild(div);
+    optDiv.appendChild(div);
   });
 }
 
-function nextQuestion(){ if(current<quiz.length-1){ current++; loadQuestion(); }}
-function prevQuestion(){ if(current>0){ current--; loadQuestion(); }}
-
-function submitExam(){
-  clearInterval(timer);
-  let score=0;
-  let reviewHTML="<h3>Review:</h3>";
-
-  answers.forEach((ans,i)=>{
-    if(ans===quiz[i].answer) score++;
-
-    reviewHTML += `<p>Q${i+1}: ${quiz[i].question}<br>
-    Your Answer: ${quiz[i].options[ans] || 'Not Answered'}<br>
-    Correct Answer: ${quiz[i].options[quiz[i].answer]}</p>`;
-  });
-
-  document.getElementById("question").innerText="Exam Completed";
-  document.getElementById("options").innerHTML="";
-  document.getElementById("result").innerText="Score: "+score+"/"+quiz.length;
-  document.getElementById("review").innerHTML=reviewHTML;
+// Navigation
+function nextQuestion() {
+  if (current < quiz.length - 1) current++;
+  else showResult();
+  loadQuestion();
 }
 
-function createNav(){
-  const nav=document.getElementById("qnav");
-  quiz.forEach((_,i)=>{
-    const btn=document.createElement("button");
-    btn.innerText=i+1;
-    btn.onclick=()=>{ current=i; loadQuestion(); };
-    nav.appendChild(btn);
-  });
+function prevQuestion() {
+  if (current > 0) current--;
+  loadQuestion();
 }
 
-function updateNav(){
-  const btns=document.querySelectorAll("#qnav button");
-  btns.forEach((b,i)=>{
-    b.classList.toggle("answered",answers[i]!==null);
+// Result
+function showResult() {
+  let score = 0;
+  answers.forEach((a, i) => {
+    if (a === quiz[i].answer) score++;
   });
-}
 
-startGlobalTimer();
+  document.getElementById("result").innerText =
+    "Score: " + score + "/" + quiz.length;
+}
 </script>
 
 </body>

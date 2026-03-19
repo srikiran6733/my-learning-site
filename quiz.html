@@ -2,20 +2,66 @@
 <html>
 <head>
   <title>Snowflake Exam Platform</title>
+
   <style>
-    body { font-family: Arial; background:#1d2a35; color:white; text-align:center; }
-    .option { background:#2f3e46; margin:10px auto; padding:10px; width:300px; cursor:pointer; }
-    .correct { background:green; }
-    .wrong { background:red; }
-    .btn { padding:10px; margin:10px; background:#04AA6D; border:none; color:white; }
+    body {
+      font-family: Arial;
+      background: #1d2a35;
+      color: white;
+      text-align: center;
+    }
+
+    h2 {
+      margin-top: 20px;
+    }
+
+    select, .btn {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .btn {
+      background: #04AA6D;
+      color: white;
+      cursor: pointer;
+    }
+
+    .option {
+      background: #2f3e46;
+      margin: 10px auto;
+      padding: 12px;
+      width: 320px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .option:hover {
+      background: #3a4f57;
+    }
+
+    .correct {
+      background: green;
+    }
+
+    .wrong {
+      background: red;
+    }
+
+    #question {
+      font-size: 22px;
+      margin: 20px;
+    }
   </style>
 </head>
 
 <body>
 
-<h2>Snowflake Quiz</h2>
+<h2>Snowflake Quiz 🚀</h2>
 
-<!-- FILTER UI -->
+<!-- FILTERS -->
 <div>
   Category:
   <select id="category">
@@ -31,6 +77,14 @@
   </select>
 
   <button class="btn" onclick="startQuiz()">Start Quiz</button>
+</div>
+
+<!-- PROGRESS BAR -->
+<div style="width: 80%; margin: 20px auto;">
+  <div id="progressText"></div>
+  <div style="background:#444; height:20px; border-radius:10px;">
+    <div id="progressBar" style="height:20px; width:0%; background:#04AA6D; border-radius:10px;"></div>
+  </div>
 </div>
 
 <hr>
@@ -74,11 +128,20 @@ function startQuiz() {
 
   current = 0;
   answers = new Array(quiz.length).fill(null);
+
   loadQuestion();
 }
 
 // Load Question
 function loadQuestion() {
+
+  // Progress
+  document.getElementById("progressText").innerText =
+    "Question " + (current + 1) + " / " + quiz.length;
+
+  document.getElementById("progressBar").style.width =
+    ((current + 1) / quiz.length) * 100 + "%";
+
   document.getElementById("qno").innerText = "Question " + (current + 1);
   document.getElementById("question").innerText = quiz[current].question;
 
@@ -106,25 +169,37 @@ function loadQuestion() {
 
 // Navigation
 function nextQuestion() {
-  if (current < quiz.length - 1) current++;
-  else showResult();
-  loadQuestion();
+  if (current < quiz.length - 1) {
+    current++;
+    loadQuestion();
+  } else {
+    showResult();
+  }
 }
 
 function prevQuestion() {
-  if (current > 0) current--;
-  loadQuestion();
+  if (current > 0) {
+    current--;
+    loadQuestion();
+  }
 }
 
 // Result
 function showResult() {
   let score = 0;
+
   answers.forEach((a, i) => {
     if (a === quiz[i].answer) score++;
   });
 
-  document.getElementById("result").innerText =
-    "Score: " + score + "/" + quiz.length;
+  let percentage = Math.round((score / quiz.length) * 100);
+
+  document.getElementById("question").innerText = "Quiz Completed 🎉";
+  document.getElementById("options").innerHTML = "";
+
+  document.getElementById("result").innerHTML =
+    "Score: " + score + "/" + quiz.length + "<br>" +
+    "Percentage: " + percentage + "%";
 }
 </script>
 

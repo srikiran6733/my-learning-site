@@ -1,0 +1,132 @@
+[
+  {
+    "question": "Snowflake architecture is?",
+    "options": ["Shared Disk", "Shared Nothing", "Hybrid", "Centralized"],
+    "answer": 2
+  },
+  {
+    "question": "Snowflake separates?",
+    "options": ["Storage & Compute", "CPU & RAM", "UI & DB", "None"],
+    "answer": 0
+  },
+  {
+    "question": "Which is compute layer?",
+    "options": ["Database", "Warehouse", "Stage", "Schema"],
+    "answer": 1
+  },
+  {
+    "question": "What is Time Travel?",
+    "options": ["Backup", "Access historical data", "Delete", "Move"],
+    "answer": 1
+  },
+  {
+    "question": "Which command loads data?",
+    "options": ["SELECT", "COPY INTO", "INSERT", "UPDATE"],
+    "answer": 1
+  },
+  {
+    question: "Snowflake architecture is?",
+    options: ["Shared Disk", "Shared Nothing", "Hybrid", "Centralized"],
+    answer: 2
+  },
+  {
+    question: "Snowflake separates?",
+    options: ["Storage & Compute", "CPU & RAM", "UI & DB", "None"],
+    answer: 0
+  },
+  {
+    question: "Which is compute layer?",
+    options: ["Database", "Warehouse", "Stage", "Schema"],
+    answer: 1
+  },
+  {
+    question: "Where data is stored?",
+    options: ["Warehouse", "Cloud Storage", "Schema", "Role"],
+    answer: 1
+  },
+  {
+    question: "What is Time Travel?",
+    options: [
+      "Backup feature",
+      "Access historical data",
+      "Delete data",
+      "Move data"
+    ],
+    answer: 1
+  },
+  {
+    question: "Fail-safe period is?",
+    options: ["1 day", "7 days", "14 days", "30 days"],
+    answer: 1
+  },
+  {
+    question: "Which command loads data?",
+    options: ["SELECT", "COPY INTO", "INSERT", "UPDATE"],
+    answer: 1
+  },
+  {
+    question: "Internal stage is used for?",
+    options: ["Storage inside Snowflake", "External cloud", "Compute", "Security"],
+    answer: 0
+  },
+  {
+    question: "Which object controls access?",
+    options: ["Role", "Warehouse", "Stage", "Table"],
+    answer: 0
+  },
+  {
+    question: "Cloning in Snowflake is?",
+    options: ["Copy data physically", "Metadata copy", "Delete data", "Move data"],
+    answer: 1
+  },
+{
+  question: "What is a Virtual Warehouse in Snowflake?",
+  options: ["Storage Layer", "Compute Resource", "Security Layer", "Database"],
+  answer: 1
+},
+{
+  question: "Which feature helps in zero-copy cloning?",
+  options: ["Time Travel", "Metadata Copy", "Fail-safe", "Replication"],
+  answer: 1
+},
+{
+  question: "Snowflake supports which cloud platforms?",
+  options: ["AWS only", "Azure only", "GCP only", "All of these"],
+  answer: 3
+},
+{
+  question: "What is the default file format in Snowflake?",
+  options: ["CSV", "JSON", "Parquet", "None"],
+  answer: 0
+},
+{
+  question: "Which command is used to unload data?",
+  options: ["GET", "PUT", "COPY INTO", "SELECT"],
+  answer: 2
+},
+{
+  question: "What does Snowflake use for data storage?",
+  options: ["Local Disk", "Cloud Storage", "RAM", "Cache"],
+  answer: 1
+},
+{
+  question: "What is a stage in Snowflake?",
+  options: ["Compute layer", "Temporary storage for data loading", "Security role", "Schema"],
+  answer: 1
+},
+{
+  question: "Which statement is used to create table?",
+  options: ["MAKE TABLE", "CREATE TABLE", "NEW TABLE", "ADD TABLE"],
+  answer: 1
+},
+{
+  question: "Which command removes table permanently?",
+  options: ["DELETE", "DROP", "REMOVE", "TRUNCATE"],
+  answer: 1
+},
+{
+  question: "What is micro-partition in Snowflake?",
+  options: ["Small storage unit", "User role", "Query type", "Schema"],
+  answer: 0
+}
+]

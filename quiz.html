@@ -2,88 +2,29 @@
 <html>
 <head>
   <title>Snowflake Exam Platform</title>
-
-  <style>
-    body {
-      font-family: Arial;
-      background: #1d2a35;
-      color: white;
-      text-align: center;
-    }
-
-    h2 {
-      margin-top: 20px;
-    }
-
-    select, .btn {
-      padding: 10px;
-      margin: 10px;
-      border-radius: 5px;
-      border: none;
-    }
-
-    .btn {
-      background: #04AA6D;
-      color: white;
-      cursor: pointer;
-    }
-
-    .option {
-      background: #2f3e46;
-      margin: 10px auto;
-      padding: 12px;
-      width: 320px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .option:hover {
-      background: #3a4f57;
-    }
-
-    .correct {
-      background: green;
-    }
-
-    .wrong {
-      background: red;
-    }
-
-    #question {
-      font-size: 22px;
-      margin: 20px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- NAVBAR (FIXED & VISIBLE) -->
-<div style="
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 40px;
-  background:#0f172a;
-  position:sticky;
-  top:0;
-  z-index:1000;
-">
-
-  <div style="font-size:20px; font-weight:bold;">
-    My Learning Site
+<!-- NAVBAR (SAME AS OTHER PAGES) -->
+<div class="navbar">
+  <div class="logo">MyCode</div>
+  <div class="nav-links">
+    <a href="index.html">🏠 Home</a>
+    <a href="html.html">HTML</a>
+    <a href="css.html">CSS</a>
+    <a href="javascript.html">JavaScript</a>
+    <a href="python.html">Python</a>
+    <a href="java.html">Java</a>
+    <a href="quiz.html">Quiz</a>
   </div>
-
-  <div>
-    <a href="index.html" style="color:white; margin:10px; text-decoration:none;">🏠 Home</a>
-    <a href="html.html" style="color:white; margin:10px; text-decoration:none;">HTML</a>
-    <a href="css.html" style="color:white; margin:10px; text-decoration:none;">CSS</a>
-    <a href="javascript.html" style="color:white; margin:10px; text-decoration:none;">JS</a>
-    <a href="python.html" style="color:white; margin:10px; text-decoration:none;">Python</a>
-    <a href="java.html" style="color:white; margin:10px; text-decoration:none;">Java</a>
-  </div>
-
 </div>
+
+<div class="content">
+
+<h2>Snowflake Quiz 🚀</h2>
+
 <!-- FILTERS -->
 <div>
   Category:
@@ -121,20 +62,20 @@
 
 <div id="result"></div>
 
+</div>
+
 <script>
 let allQuestions = [];
 let quiz = [];
 let answers = [];
 let current = 0;
 
-// Load JSON
 fetch("questions.json")
   .then(res => res.json())
   .then(data => {
     allQuestions = data;
   });
 
-// Start Quiz
 function startQuiz() {
   const cat = document.getElementById("category").value;
   const diff = document.getElementById("difficulty").value;
@@ -151,14 +92,10 @@ function startQuiz() {
 
   current = 0;
   answers = new Array(quiz.length).fill(null);
-
   loadQuestion();
 }
 
-// Load Question
 function loadQuestion() {
-
-  // Progress
   document.getElementById("progressText").innerText =
     "Question " + (current + 1) + " / " + quiz.length;
 
@@ -190,7 +127,6 @@ function loadQuestion() {
   });
 }
 
-// Navigation
 function nextQuestion() {
   if (current < quiz.length - 1) {
     current++;
@@ -207,7 +143,6 @@ function prevQuestion() {
   }
 }
 
-// Result
 function showResult() {
   let score = 0;
 

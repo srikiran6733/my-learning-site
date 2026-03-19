@@ -41,9 +41,61 @@
 <script>
 // Snowflake Questions
 const quiz = [
-  { question: "Snowflake architecture type?", options: ["Shared Disk","Shared Nothing","Hybrid","Centralized"], answer: 2 },
-  { question: "Snowflake separates?", options: ["CPU & RAM","Storage & Compute","UI & DB","None"], answer: 1 },
-  { question: "Which object stores data?", options: ["Warehouse","Database","Stage","Role"], answer: 1 }
+  {
+    question: "Snowflake architecture is?",
+    options: ["Shared Disk", "Shared Nothing", "Hybrid", "Centralized"],
+    answer: 2
+  },
+  {
+    question: "Snowflake separates?",
+    options: ["Storage & Compute", "CPU & RAM", "UI & DB", "None"],
+    answer: 0
+  },
+  {
+    question: "Which is compute layer?",
+    options: ["Database", "Warehouse", "Stage", "Schema"],
+    answer: 1
+  },
+  {
+    question: "Where data is stored?",
+    options: ["Warehouse", "Cloud Storage", "Schema", "Role"],
+    answer: 1
+  },
+  {
+    question: "What is Time Travel?",
+    options: [
+      "Backup feature",
+      "Access historical data",
+      "Delete data",
+      "Move data"
+    ],
+    answer: 1
+  },
+  {
+    question: "Fail-safe period is?",
+    options: ["1 day", "7 days", "14 days", "30 days"],
+    answer: 1
+  },
+  {
+    question: "Which command loads data?",
+    options: ["SELECT", "COPY INTO", "INSERT", "UPDATE"],
+    answer: 1
+  },
+  {
+    question: "Internal stage is used for?",
+    options: ["Storage inside Snowflake", "External cloud", "Compute", "Security"],
+    answer: 0
+  },
+  {
+    question: "Which object controls access?",
+    options: ["Role", "Warehouse", "Stage", "Table"],
+    answer: 0
+  },
+  {
+    question: "Cloning in Snowflake is?",
+    options: ["Copy data physically", "Metadata copy", "Delete data", "Move data"],
+    answer: 1
+  }
 ];
 
 let current = 0;

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CodeMaster - Snowflake Tutorial</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo">CodeMaster</div>
+  <div class="nav-links">
+    <a href="index.html">🏠 Home</a>
+    <a href="html.html">HTML</a>
+    <a href="css.html">CSS</a>
+    <a href="javascript.html">JavaScript</a>
+    <a href="python.html">Python</a>
+    <a href="java.html">Java</a>
+    <a href="quiz.html">Quiz</a>
+    <a href="snowflake.html">Snowflake</a>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <h1>Snowflake Tutorial ❄️</h1>
+  <p>Learn Snowflake concepts with examples</p>
+
+  <hr>
+
+  <!-- SECTION 1 -->
+  <h2>What is Snowflake?</h2>
+  <p>
+    Snowflake is a cloud-based data warehouse platform that separates
+    compute and storage for better scalability and performance.
+  </p>
+
+  <!-- SECTION 2 -->
+  <h2>Snowflake Architecture</h2>
+  <ul>
+    <li>Cloud Storage Layer</li>
+    <li>Compute Layer (Virtual Warehouses)</li>
+    <li>Cloud Services Layer</li>
+  </ul>
+
+  <!-- SECTION 3 -->
+  <h2>Create Table Example</h2>
+  <pre>
+CREATE TABLE EMPLOYEE (
+  ID INT,
+  NAME STRING,
+  SALARY NUMBER
+);
+  </pre>
+
+  <!-- SECTION 4 -->
+  <h2>Insert Data</h2>
+  <pre>
+INSERT INTO EMPLOYEE VALUES (1, 'Kiran', 50000);
+INSERT INTO EMPLOYEE VALUES (2, 'John', 60000);
+  </pre>
+
+  <!-- SECTION 5 -->
+  <h2>Query Data</h2>
+  <pre>
+SELECT * FROM EMPLOYEE;
+  </pre>
+
+  <!-- SECTION 6 -->
+  <h2>Time Travel Feature</h2>
+  <p>
+    Snowflake allows you to access historical data using Time Travel.
+  </p>
+
+  <pre>
+SELECT * FROM EMPLOYEE
+AT (TIMESTAMP => '2024-01-01 10:00:00');
+  </pre>
+
+  <!-- SECTION 7 -->
+  <h2>Load Data using COPY INTO</h2>
+  <pre>
+COPY INTO EMPLOYEE
+FROM @my_stage/file.csv
+FILE_FORMAT = (TYPE = 'CSV');
+  </pre>
+
+  <!-- BACK -->
+  <a href="index.html" class="back">⬅ Back to Home</a>
+
+</div>
+
+</body>
+</html>

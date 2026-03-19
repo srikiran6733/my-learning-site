@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Selenium Test Page</title>
+</head>
+<body>
+    <h1>Selenium Automation Page</h1>
+    <input id="userS" placeholder="Username" type="text"><br>
+    <input id="passS" placeholder="Password" type="password"><br>
+    <button onclick="document.getElementById('msgS').innerText=(document.getElementById('userS').value==='admin' && document.getElementById('passS').value==='admin123') ? 'Login Successful' : 'Invalid Credentials'">Login</button>
+    <p id="msgS"></p>
+
+    <table border="1">
+        <tr><th>ID</th><th>Name</th><th>Role</th></tr>
+        <tr><td>1</td><td>Anna</td><td>QA</td></tr>
+        <tr><td>2</td><td>Ravi</td><td>Dev</td></tr>
+    </table>
+</body>
+</html>

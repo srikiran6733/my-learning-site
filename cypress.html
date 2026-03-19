@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cypress Test Page</title>
+    <style>
+        body { font-family: Arial; background: #fee; padding: 20px; }
+        input, button { padding: 8px; margin: 5px 0; width: 100%; }
+        #msg { font-weight: bold; margin-top: 10px; }
+    </style>
+    <script>
+        function login() {
+            let user = document.getElementById("user").value;
+            let pass = document.getElementById("pass").value;
+            document.getElementById("msg").innerText = (user==="admin" && pass==="admin123") ? "Login Successful" : "Invalid Credentials";
+        }
+    </script>
+</head>
+<body>
+    <h1>Cypress Automation Page</h1>
+    <label>Username:</label>
+    <input id="user" type="text">
+    <label>Password:</label>
+    <input id="pass" type="password">
+    <button onclick="login()">Login</button>
+    <p id="msg"></p>
+
+    <table>
+        <tr><th>ID</th><th>Name</th><th>Role</th></tr>
+        <tr><td>1</td><td>Anna</td><td>QA</td></tr>
+        <tr><td>2</td><td>John</td><td>Dev</td></tr>
+    </table>
+</body>
+</html>

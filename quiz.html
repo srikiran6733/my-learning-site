@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Snowflake Exam Platform</title>
+  <style>
+    body { font-family: Arial; background:#1d2a35; color:white; margin:0; text-align:center; }
+    .navbar { display:flex; justify-content:space-between; padding:15px 40px; }
+    .container { margin-top:20px; }
+    .question { font-size:22px; margin:20px; }
+    .option { display:block; background:#2f3e46; margin:10px auto; padding:10px; width:300px; cursor:pointer; border-radius:5px; }
+    .correct { background:green; }
+    .wrong { background:red; }
+    .btn { margin:10px; padding:10px 20px; background:#04AA6D; border:none; color:white; cursor:pointer; }
+    .timer { font-size:18px; }
+    .answered { background:#04AA6D; }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <div>Snowflake Exam</div>
+  <div><a href="index.html" style="color:white;">Home</a></div>
+</div>
+
+<div class="container">
+  <div class="timer">Total Time: <span id="globalTime">120</span>s</div>
+  <div id="qno"></div>
+  <div id="question" class="question"></div>
+  <div id="options"></div>
+
+  <button class="btn" onclick="prevQuestion()">Previous</button>
+  <button class="btn" onclick="nextQuestion()">Next</button>
+  <button class="btn" onclick="submitExam()">Submit</button>
+
+  <div id="result"></div>
+  <div id="review"></div>
+
+  <div id="qnav"></div>
+</div>
+
+<script>
+// Snowflake Questions
+const quiz = [
+  { question: "Snowflake architecture type?", options: ["Shared Disk","Shared Nothing","Hybrid","Centralized"], answer: 2 },
+  { question: "Snowflake separates?", options: ["CPU & RAM","Storage & Compute","UI & DB","None"], answer: 1 },
+  { question: "Which object stores data?", options: ["Warehouse","Database","Stage","Role"], answer: 1 }
+];
+
+let current = 0;
+let answers = new Array(quiz.length).fill(null);
+let globalTimer = 120;
+let timer;
+
+function startGlobalTimer(){
+  timer = setInterval(()=>{
+    globalTimer--;
+    document.getElementById("globalTime").innerText = globalTimer;
+    if(globalTimer === 0){ submitExam(); }
+  },1000);
+}
+
+function loadQuestion(){
+  document.getElementById("qno").innerText = "Question " + (current+1);
+  document.getElementById("question").innerText = quiz[current].question;
+
+  const optionsDiv = document.getElementById("options");
+  optionsDiv.innerHTML="";
+
+  quiz[current].options.forEach((opt,i)=>{
+    const div=document.createElement("div");
+    div.classList.add("option");
+    div.innerText=opt;
+
+    if(answers[current]!==null){
+      if(i===quiz[current].answer) div.classList.add("correct");
+      else if(i===answers[current]) div.classList.add("wrong");
+    }
+
+    div.onclick=()=>{
+      answers[current]=i;
+      loadQuestion();
+      updateNav();
+    };
+
+    optionsDiv.appendChild(div);
+  });
+}
+
+function nextQuestion(){ if(current<quiz.length-1){ current++; loadQuestion(); }}
+function prevQuestion(){ if(current>0){ current--; loadQuestion(); }}
+
+function submitExam(){
+  clearInterval(timer);
+  let score=0;
+  let reviewHTML="<h3>Review:</h3>";
+
+  answers.forEach((ans,i)=>{
+    if(ans===quiz[i].answer) score++;
+
+    reviewHTML += `<p>Q${i+1}: ${quiz[i].question}<br>
+    Your Answer: ${quiz[i].options[ans] || 'Not Answered'}<br>
+    Correct Answer: ${quiz[i].options[quiz[i].answer]}</p>`;
+  });
+
+  document.getElementById("question").innerText="Exam Completed";
+  document.getElementById("options").innerHTML="";
+  document.getElementById("result").innerText="Score: "+score+"/"+quiz.length;
+  document.getElementById("review").innerHTML=reviewHTML;
+}
+
+function createNav(){
+  const nav=document.getElementById("qnav");
+  quiz.forEach((_,i)=>{
+    const btn=document.createElement("button");
+    btn.innerText=i+1;
+    btn.onclick=()=>{ current=i; loadQuestion(); };
+    nav.appendChild(btn);
+  });
+}
+
+function updateNav(){
+  const btns=document.querySelectorAll("#qnav button");
+  btns.forEach((b,i)=>{
+    b.classList.toggle("answered",answers[i]!==null);
+  });
+}
+
+createNav();
+loadQuestion();
+startGlobalTimer();
+</script>
+
+</body>
+</html>

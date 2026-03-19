@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn to Code</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #1d2a35;
+      color: white;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background-color: #1d2a35;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #04AA6D;
+    }
+
+    .nav-links a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: white;
+      font-size: 14px;
+    }
+
+    .signin-btn {
+      background-color: #04AA6D;
+      padding: 8px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+      color: white;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .hero h1 {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #ffe082;
+      margin-bottom: 30px;
+    }
+
+    .search-box {
+      display: flex;
+      justify-content: center;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .search-box input {
+      width: 80%;
+      padding: 15px;
+      border: none;
+      border-radius: 25px 0 0 25px;
+      outline: none;
+    }
+
+    .search-box button {
+      width: 20%;
+      border: none;
+      background-color: #04AA6D;
+      color: white;
+      border-radius: 0 25px 25px 0;
+      cursor: pointer;
+    }
+
+    .start-link {
+      margin-top: 20px;
+      display: inline-block;
+      color: white;
+      text-decoration: underline;
+    }
+
+    /* Wave section */
+    .wave {
+      margin-top: 50px;
+      height: 100px;
+      background: linear-gradient(to right, #c8d6c4, #a7bfb2);
+      border-top-left-radius: 100% 50px;
+      border-top-right-radius: 100% 50px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">MyCode</div>
+    <div class="nav-links">
+  <a href="html.html">HTML</a>
+  <a href="css.html">CSS</a>
+  <a href="javascript.html">JavaScript</a>
+  <a href="python.html">Python</a>
+  <a href="java.html">Java</a>
+</div>
+    <a href="#" class="signin-btn">Sign In</a>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero">
+  <h1>Learn to Code</h1>
+  <p>With the world's largest web developer site.</p>
+
+  <div class="search-box">
+    <input type="text" placeholder="Search tutorials...">
+    <button>🔍</button>
+  </div>
+
+  <a href="#" class="start-link">Not Sure Where To Begin?</a>
+  <br><br>
+  <a href="quiz.html" class="start-link">Start Quiz</a>
+</div>
+
+  <!-- Bottom Wave -->
+  <div class="wave"></div>
+
+</body>
+</html>

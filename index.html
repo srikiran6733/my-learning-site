@@ -17,17 +17,17 @@
       color: white;
     }
 
-    /* Scrollable Navbar */
-    .navbar-container {
-      overflow-x: auto; /* horizontal scroll */
-      white-space: nowrap; /* keep links in one line */
+    /* Navbar Container */
+    .navbar-wrapper {
+      position: relative;
       background-color: #1d2a35;
       padding: 10px 0;
     }
 
     .navbar {
-      display: inline-flex; /* make it scrollable inline */
-      align-items: center;
+      display: flex;
+      overflow-x: hidden; /* hide scrollbar */
+      scroll-behavior: smooth;
       gap: 10px;
       padding-left: 20px;
     }
@@ -36,12 +36,11 @@
       font-size: 24px;
       font-weight: bold;
       color: #04AA6D;
+      flex-shrink: 0;
       margin-right: 20px;
-      flex-shrink: 0; /* don't shrink logo */
     }
 
     .nav-links a {
-      display: inline-block;
       text-decoration: none;
       color: white;
       font-size: 14px;
@@ -49,8 +48,9 @@
       padding: 8px 15px;
       border-radius: 5px;
       background-color: #04AA6D;
+      flex-shrink: 0;
       transition: 0.3s;
-      flex-shrink: 0; /* don't shrink links */
+      white-space: nowrap;
     }
 
     .nav-links a:hover {
@@ -64,6 +64,30 @@
       text-decoration: none;
       color: white;
       flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    /* Scroll Buttons */
+    .scroll-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.3);
+      border: none;
+      color: white;
+      font-size: 20px;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 5px;
+      z-index: 1;
+    }
+
+    .scroll-left {
+      left: 0;
+    }
+
+    .scroll-right {
+      right: 0;
     }
 
     /* Hero Section */
@@ -110,9 +134,10 @@
 </head>
 <body>
 
-  <!-- Scrollable Navbar -->
-  <div class="navbar-container">
-    <div class="navbar">
+  <!-- Navbar -->
+  <div class="navbar-wrapper">
+    <button class="scroll-btn scroll-left" onclick="scrollNavbar(-150)">&#171;</button>
+    <div class="navbar" id="navbar">
       <div class="logo">CodeMaster 🚀</div>
       <div class="nav-links">
         <a href="snowflake.html">Snowflake</a>
@@ -121,32 +146,35 @@
         <a href="javascript.html">JavaScript</a>
         <a href="python.html">Python</a>
         <a href="java.html">Java</a>
-
-        <a href="playwright.html">Playwright Practice</a>
-        <a href="cypress.html">Cypress Practice</a>
-        <a href="typescript.html">TypeScript Practice</a>
-        <a href="selenium.html">Selenium Practice</a>
-        <a href="sql.html">SQL Practice</a>
-        <a href="java.html">Java Practice</a>
-
+        <a href="playwright.html">Playwright</a>
+        <a href="cypress.html">Cypress</a>
+        <a href="typescript.html">TypeScript</a>
+        <a href="selenium.html">Selenium</a>
+        <a href="sql.html">SQL</a>
         <a href="quiz.html">Start Quiz</a>
-        <a href="#">Not Sure Where To Begin?</a>
-
+        <a href="#">Not Sure?</a>
         <a href="#" class="signin-btn">Sign In</a>
       </div>
     </div>
+    <button class="scroll-btn scroll-right" onclick="scrollNavbar(150)">&#187;</button>
   </div>
 
   <!-- Hero Section -->
   <div class="hero">
     <h1>Learn to Code & Automate</h1>
     <p>Practice quizzes for Snowflake, Selenium, Playwright, Cypress, Java, JavaScript, TypeScript, and SQL</p>
-
     <div class="search-box">
       <input type="text" placeholder="Search tutorials...">
       <button>🔍</button>
     </div>
   </div>
+
+  <script>
+    function scrollNavbar(distance) {
+      const navbar = document.getElementById('navbar');
+      navbar.scrollLeft += distance;
+    }
+  </script>
 
 </body>
 </html>

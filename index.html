@@ -17,30 +17,31 @@
       color: white;
     }
 
-    /* Navbar */
-    .navbar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 40px;
+    /* Scrollable Navbar */
+    .navbar-container {
+      overflow-x: auto; /* horizontal scroll */
+      white-space: nowrap; /* keep links in one line */
       background-color: #1d2a35;
+      padding: 10px 0;
+    }
+
+    .navbar {
+      display: inline-flex; /* make it scrollable inline */
+      align-items: center;
+      gap: 10px;
+      padding-left: 20px;
     }
 
     .logo {
       font-size: 24px;
       font-weight: bold;
       color: #04AA6D;
-    }
-
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
+      margin-right: 20px;
+      flex-shrink: 0; /* don't shrink logo */
     }
 
     .nav-links a {
+      display: inline-block;
       text-decoration: none;
       color: white;
       font-size: 14px;
@@ -49,6 +50,7 @@
       border-radius: 5px;
       background-color: #04AA6D;
       transition: 0.3s;
+      flex-shrink: 0; /* don't shrink links */
     }
 
     .nav-links a:hover {
@@ -61,6 +63,7 @@
       border-radius: 5px;
       text-decoration: none;
       color: white;
+      flex-shrink: 0;
     }
 
     /* Hero Section */
@@ -80,7 +83,6 @@
       margin-bottom: 30px;
     }
 
-    /* Search Box */
     .search-box {
       display: flex;
       justify-content: center;
@@ -104,42 +106,35 @@
       border-radius: 0 25px 25px 0;
       cursor: pointer;
     }
-
-    .start-link {
-      margin-top: 20px;
-      display: inline-block;
-      color: white;
-      text-decoration: underline;
-    }
   </style>
 </head>
 <body>
 
-  <!-- Navbar with main + automation links -->
-  <div class="navbar">
-    <div class="logo">CodeMaster 🚀</div>
-    <div class="nav-links">
-      <!-- Main topics -->
-      <a href="snowflake.html">Snowflake</a>
-      <a href="html.html">HTML</a>
-      <a href="css.html">CSS</a>
-      <a href="javascript.html">JavaScript</a>
-      <a href="python.html">Python</a>
-      <a href="java.html">Java</a>
+  <!-- Scrollable Navbar -->
+  <div class="navbar-container">
+    <div class="navbar">
+      <div class="logo">CodeMaster 🚀</div>
+      <div class="nav-links">
+        <a href="snowflake.html">Snowflake</a>
+        <a href="html.html">HTML</a>
+        <a href="css.html">CSS</a>
+        <a href="javascript.html">JavaScript</a>
+        <a href="python.html">Python</a>
+        <a href="java.html">Java</a>
 
-      <!-- Automation & Practice links in same row -->
-      <a href="playwright.html">Playwright Practice</a>
-      <a href="cypress.html">Cypress Practice</a>
-      <a href="typescript.html">TypeScript Practice</a>
-      <a href="selenium.html">Selenium Practice</a>
-      <a href="sql.html">SQL Practice</a>
-      <a href="java.html">Java Practice</a>
+        <a href="playwright.html">Playwright Practice</a>
+        <a href="cypress.html">Cypress Practice</a>
+        <a href="typescript.html">TypeScript Practice</a>
+        <a href="selenium.html">Selenium Practice</a>
+        <a href="sql.html">SQL Practice</a>
+        <a href="java.html">Java Practice</a>
 
-      <!-- Quiz / Guidance -->
-      <a href="quiz.html">Start Quiz</a>
-      <a href="#">Not Sure Where To Begin?</a>
+        <a href="quiz.html">Start Quiz</a>
+        <a href="#">Not Sure Where To Begin?</a>
+
+        <a href="#" class="signin-btn">Sign In</a>
+      </div>
     </div>
-    <a href="#" class="signin-btn">Sign In</a>
   </div>
 
   <!-- Hero Section -->
